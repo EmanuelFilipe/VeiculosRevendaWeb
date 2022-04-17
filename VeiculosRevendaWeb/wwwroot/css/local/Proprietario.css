@@ -1,0 +1,19 @@
+﻿.colNome {
+	width: 27%;
+}
+
+.colDocumento {
+	width: 16%;
+}
+
+.colEmail {
+	width: 17%;
+}
+
+.colCep {
+	width: 12%;
+}
+
+.colStatus {
+	width: 5%;
+}

@@ -1,0 +1,166 @@
+﻿@model Proprietario
+
+@{
+	ViewData["Title"] = "Visualizar";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<form asp-action="Create">
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label asp-for="Nome" class="control-label"></label>
+						<input asp-for="Nome" class="form-control" disabled />
+						<span asp-validation-for="Nome" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label asp-for="Documento" class="control-label"></label> <span class="fa fa-circle-info" title="CPF / CNPJ"></span>
+						<input id="documento" asp-for="Documento" class="form-control" disabled />
+						<span asp-validation-for="Documento" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label asp-for="Email" class="control-label"></label>
+						<input asp-for="Email" class="form-control" disabled />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="bs-example" data-example-ids="select-form-control">
+						<label asp-for="CodStatus" class="control-label"></label>
+						<select class="form-control" asp-for="CodStatus" disabled>
+							<option value="" selected>Selecione</option>
+							<option value="1">Ativo</option>
+							<option value="0">Cancelado</option>
+						</select>
+						<span asp-validation-for="CodStatus" class="text-danger"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<fieldset class="border p-3">
+				<legend class="w-auto">&nbsp;Endereço&nbsp;</legend>
+
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label asp-for="Endereco" class="control-label"></label>
+							<input id="cep" asp-for="Endereco" class="form-control" disabled />
+							<span asp-validation-for="Endereco" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label">Rua</label>
+							<input id="rua" class="form-control" disabled />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label">Bairro</label>
+							<input id="bairro" class="form-control" disabled />
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label">Cidade</label>
+							<input id="cidade" class="form-control" disabled />
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="form-group">
+							<label class="control-label">Estado</label>
+							<input id="estado" class="form-control" disabled />
+						</div>
+					</div>
+
+				</div>
+			</fieldset>
+
+			<hr />
+			<br />
+			<div class="form-group">
+				<a class="btn btn-secondary" asp-action="Index">Voltar</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/jquery.mask/jquery.mask.js"></script>
+	<script src="~/js/local/Proprietario.js"></script>
+
+	@*<script type="text/javascript">
+			$(document).ready(function () {
+
+				inicializa();
+
+				function inicializa() {
+					var cep = $("#cep").val().replace(/\D/g, '');
+
+					if (cep != "") {
+						consultaCEP(cep);
+					}
+				}
+
+				function limpa_formulario_cep() {
+					$("#cep").val("");
+					$("#rua").val("");
+					$("#bairro").val("");
+					$("#cidade").val("");
+					$("#estado").val("");
+				}
+
+				function consultaCEP(cep) {
+					// expressao regular para validar o CEP
+					var validaCepReg = /^[0-9]{8}$/;
+
+					if (validaCepReg.test(cep)) {
+						// preenche os campos com '...' enquanto consulta o webservice
+						$("#rua").val("...");
+						$("#bairro").val("...");
+						$("#cidade").val("...");
+						$("#estado").val("...");
+
+						$.ajax({
+							type: "GET",
+							url: "https://brasilapi.com.br/api/cep/v1/" + cep,
+							success: function (dados) {
+								$("#rua").val(dados.street);
+								$("#bairro").val(dados.neighborhood);
+								$("#cidade").val(dados.city);
+								$("#estado").val(dados.state);
+							},
+							error: function (err) {
+								alert(err.responseJSON.errors[0].message);
+								limpa_formulario_cep();
+							}
+						});
+					}
+
+				}
+
+			});
+		</script>*@
+}

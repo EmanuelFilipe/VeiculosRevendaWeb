@@ -1,0 +1,40 @@
+﻿@model Marca
+
+@{
+	ViewData["Title"] = "Visualizar";
+}
+
+<h4 style="padding-top: 50px;">@ViewData["Title"]</h4>
+<hr />
+
+<div class="row">
+	<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label asp-for="Nome" class="control-label"></label>
+						<input asp-for="Nome" class="form-control" maxlength="50" disabled />
+						<span asp-validation-for="Nome" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="bs-example" data-example-ids="select-form-control">
+						<label asp-for="CodStatus" class="control-label"></label>
+						<select class="form-control" asp-for="CodStatus" disabled>
+							<option value="" selected>Selecione</option>
+							<option value="1">Ativo</option>
+							<option value="0">Cancelado</option>
+						</select>
+						<span asp-validation-for="CodStatus" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+<hr />
+<br />
+<div>
+	<a class="btn btn-secondary" href="javascript:window.history.back();">Voltar</a>
+</div>

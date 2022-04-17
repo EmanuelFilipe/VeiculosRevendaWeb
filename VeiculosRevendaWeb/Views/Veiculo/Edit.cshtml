@@ -1,0 +1,133 @@
+﻿@model Veiculo
+
+@{
+	ViewData["Title"] = "Editar";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<hr />
+<div class="row">
+	<div class="col-md-12">
+		<form asp-action="Edit">
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="Renavam" class="control-label"></label>
+						<input asp-for="Renavam" class="form-control" maxlength="11" />
+						<span asp-validation-for="Renavam" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="Modelo" class="control-label"></label>
+						<input asp-for="Modelo" class="form-control" />
+						<span asp-validation-for="Modelo" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="Quilometragem" class="control-label"></label>
+						<div class="input-group">
+							<input id="quilometragem" type="text" asp-for="Quilometragem" class="form-control" />
+							<div class="input-group-prepend">
+								<div class="input-group-text">km</div>
+							</div>
+						</div>
+						<span asp-validation-for="Quilometragem" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="AnoFabricacao" class="control-label"></label>
+						<input asp-for="AnoFabricacao" class="form-control" type="date" />
+						<span asp-validation-for="AnoFabricacao" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="AnoModelo" class="control-label"></label>
+						<input asp-for="AnoModelo" class="form-control" type="date" placeholder="" />
+						<span asp-validation-for="AnoModelo" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<span class="colorRed">* </span><label asp-for="Valor" class="control-label"></label>
+						<input id="valor" asp-for="Valor" class="form-control" />
+						<span asp-validation-for="Valor" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="bs-example" data-example-ids="select-form-control">
+						<span class="colorRed">* </span><label asp-for="CodStatus" class="control-label"></label>
+						<select class="form-control" asp-for="CodStatus">
+							<option value="" selected>Selecione</option>
+							<option value="1">Disponível</option>
+							<option value="2">Indisponível</option>
+							<option value="3">Vendido</option>
+						</select>
+						<span asp-validation-for="CodStatus" class="text-danger"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				@if (ViewBag.ListaMarcasSelectList != null)
+				{
+					<div class="col-md-4">
+						<div class="form-group">
+							<span class="colorRed">* </span><label asp-for="marcaId" class="control-label"></label>
+							@Html.DropDownList("marcaId", ViewBag.ListaMarcasSelectList as SelectList, "Selecione", new { @class = "form-control" })
+							<span asp-validation-for="marcaId" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<span class="colorRed">* </span><label asp-for="proprietarioId" class="control-label"></label>
+							@Html.DropDownList("proprietarioId", ViewBag.ListaProprietariosSelectList as SelectList, "Selecione", new { @class = "form-control" })
+							<span asp-validation-for="proprietarioId" class="text-danger"></span>
+						</div>
+					</div>
+				}
+			</div>
+
+			<hr />
+			<br />
+			<div class="form-group">
+				<a class="btn btn-secondary" asp-action="Index">Voltar</a>
+				<input id="submit" type="submit" value="Salvar" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/jquery.mask/jquery.mask.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//$('#valor').mask('999.999.999', { reverse: true });
+			$('#quilometragem').mask('999.999.999', { reverse: true });
+			$('#valor').mask('000.000.000.000.000,00', { reverse: true });
+
+			//$("#submit").on('click', function () {
+
+			//	var valor = $('#quilometragem').val();
+
+			//	var numsStr = valor.replace(/[^0-9]/g, '');
+			//	$('#quilometragem').val(numsStr);
+			//});
+		});
+	</script>
+}
+

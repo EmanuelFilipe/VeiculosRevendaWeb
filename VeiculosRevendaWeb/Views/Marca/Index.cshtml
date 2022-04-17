@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Marca>
+
+@{
+	ViewData["Title"] = "Lista de Marcas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<link href="~/css/local/Marca.css" rel="stylesheet" />
+
+
+@if (TempData["MSG_ERRO"] != null)
+{
+	<p class="alert alert-danger">@TempData["MSG_ERRO"]</p>
+}
+
+<p style="margin-bottom: 60px;"><a class="fa-pull-right btn btn-info fa fa-plus" asp-action="Create">  Novo</a></p>
+
+<table class="table table-hover table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<th class="colNome">@Html.DisplayNameFor(model => model.Nome)</th>
+			<th class="colStatus">@Html.DisplayNameFor(model => model.CodStatus)</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model != null && Model.Count() > 0)
+		{
+			foreach (var item in Model)
+			{
+				<tr>
+					@{ var status = (item.CodStatus == 1 ? "Ativo" : "Cancelado");}
+					<td>@Html.DisplayTextFor(modelItem => item.Nome)</td>
+					<td>@Html.DisplayTextFor(modelItem => status)</td>
+					<td class="text-right">
+						<a asp-action="Detail" class="btn btn-info" asp-route-id="@item.Id" title="Visualizar"><span class="fa fa-search"></span></a>
+						<a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id" title="Editar"><span class="fa fa-pencil-alt"></span></a>
+						<a id="deleteItem" class="deleteItem btn btn-danger" data-target="#basicModal" data-toggle="modal" data-path="@Url.Action("Delete", "Marca", new { id = item.Id })" title="Deletar"><span class="fa fa-trash"></a>
+					</td>
+				</tr>
+			}
+		}
+		else
+		{
+			<tr>
+				<td colspan="5" class="text-center">
+					<span><strong style="color: red">Sem dados</strong></span>
+				</td>
+
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="modal fade" id="basicModal" tabindex="1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Atenção</h4>
+				<button type="button" class="close" data-dismiss="modal" value="delete" aria-hidden="true">x</button>
+			</div>
+			<div class="modal-body">
+				Tem certeza que deseja Cancelar este registro?
+			</div>
+			<div class="modal-footer">
+				<button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+				<button id="btnContinueToDelete" type="button" value="delte" class="btn btn-primary">Deletar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/js/local/deleteItemScript.js"></script>
+	@*<script type="text/javascript">
+			var pathToDelete;
+
+			$(".deleteItem").click(function () {
+				pathToDelete = $(this).data('path');
+			});
+
+			$("#btnContinueToDelete").click(function () {
+				window.location = pathToDelete;
+			});
+		</script>*@
+}
