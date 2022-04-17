@@ -68,36 +68,9 @@
 	</tbody>
 </table>
 
-<div class="modal fade" id="basicModal" tabindex="1" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Atenção</h4>
-				<button type="button" class="close" data-dismiss="modal" value="delete" aria-hidden="true">x</button>
-			</div>
-			<div class="modal-body">
-				Tem certeza que deseja Cancelar este registro?
-			</div>
-			<div class="modal-footer">
-				<button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
-				<button id="btnContinueToDelete" type="button" value="delte" class="btn btn-primary">Deletar</button>
-			</div>
-		</div>
-	</div>
-</div>
+<partial name="../Shared/_Delete" />
 
 @section Scripts {
 	<script src="~/lib/jquery/dist/jquery.js"></script>
 	<script src="~/js/local/deleteItemScript.js"></script>
-	@*<script type="text/javascript">
-			var pathToDelete;
-
-			$(".deleteItem").click(function () {
-				pathToDelete = $(this).data('path');
-			});
-
-			$("#btnContinueToDelete").click(function () {
-				window.location = pathToDelete;
-			});
-		</script>*@
 }

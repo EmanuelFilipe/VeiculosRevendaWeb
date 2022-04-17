@@ -33,7 +33,6 @@ namespace VeiculosRevendaWeb.Data.Repositories
         public Veiculo GetVeiculoById(int id)
         {
             return context.Veiculos.AsNoTracking().Where(x => x.Id == id).FirstOrDefault();
-            //return veiculo.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public void Add(Veiculo model)

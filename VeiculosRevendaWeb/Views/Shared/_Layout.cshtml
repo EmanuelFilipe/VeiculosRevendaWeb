@@ -18,28 +18,29 @@
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body style="background-color: ghostwhite;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VeiculosRevendaWeb</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Marca" asp-action="Index">VeiculosRevendaWeb</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-					<ul class="navbar-nav flex-grow-1">
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Marca" asp-action="Index">Marca</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Proprietario" asp-action="Index">Proprietário</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Veiculo" asp-action="Index">Veículos</a>
+                </button>|
+				<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<strong style="font-size: 20px;">Menu</strong>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item"  asp-controller="Marca" asp-action="Index">Marca</a>
+								<a class="dropdown-item" asp-controller="Proprietario" asp-action="Index">Proprietário</a>
+								<a class="dropdown-item" asp-controller="Veiculo" asp-action="Index">Veículos</a>
+							</div>
 						</li>
 					</ul>
-                </div>
+				</div>
             </div>
         </nav>
     </header>
@@ -50,7 +51,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-center">
+    <footer class="border-top footer text-muted text-center" style="background-color: white">
         <div class="container">
             &copy; 2022 - VeiculosRevendaWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

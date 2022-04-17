@@ -87,19 +87,6 @@
 					</div>
 				</div>
 			}
-			@*<div class="col-md-4">
-					<div class="form-group">
-						<span class="colorRed">* </span><label asp-for="proprietarioId" class="control-label"></label>
-						<select asp-for="proprietarioId" class="form-control" asp-items="ViewBag.proprietarioId"></select>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="form-group">
-						<span class="colorRed">* </span><label asp-for="marcaId" class="control-label"></label>
-						<select asp-for="marcaId" class="form-control" asp-items="ViewBag.marcaId"></select>
-					</div>
-				</div>*@
 		</div>
 
 		<hr />
@@ -116,7 +103,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function () {
-			//$('#valor').mask('999.999.999', { reverse: true });
 			$('#quilometragem').mask('999.999.999', { reverse: true });
 			$('#valor').mask('000.000.000.000.000,00', { reverse: true });
 		});
