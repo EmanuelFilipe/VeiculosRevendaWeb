@@ -101,7 +101,16 @@ namespace VeiculosRevendaWeb.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("proprietarioId");
+
                     b.ToTable("Veiculos");
+                });
+
+            modelBuilder.Entity("VeiculosRevendaWeb.Models.Veiculo", b =>
+                {
+                    b.HasOne("VeiculosRevendaWeb.Models.Proprietario", "Proprietario")
+                        .WithMany()
+                        .HasForeignKey("proprietarioId");
                 });
 #pragma warning restore 612, 618
         }

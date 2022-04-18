@@ -38,6 +38,7 @@ namespace VeiculosRevendaWeb.Models
 
         [Display(Name = "Proprietário")]
         public int? proprietarioId { get; set; }
+        public virtual Proprietario Proprietario { get; set; }
 
         [Display(Name = "Marca")]
         public int? marcaId { get; set; }

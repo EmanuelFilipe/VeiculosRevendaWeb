@@ -26,7 +26,7 @@ namespace VeiculosRevendaWeb.Data.Repositories
 
         public IList<Veiculo> GetVeiculos()
         {
-            List<Veiculo> veiculos = context.Veiculos.ToList();
+            List<Veiculo> veiculos = context.Veiculos.Include(v => v.Proprietario).ToList();
             return veiculos;
         }
 

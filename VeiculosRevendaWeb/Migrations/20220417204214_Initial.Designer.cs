@@ -10,7 +10,7 @@ using VeiculosRevendaWeb.Data.Context;
 namespace VeiculosRevendaWeb.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220417140420_Initial")]
+    [Migration("20220417204214_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,7 +103,16 @@ namespace VeiculosRevendaWeb.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("proprietarioId");
+
                     b.ToTable("Veiculos");
+                });
+
+            modelBuilder.Entity("VeiculosRevendaWeb.Models.Veiculo", b =>
+                {
+                    b.HasOne("VeiculosRevendaWeb.Models.Proprietario", "Proprietario")
+                        .WithMany()
+                        .HasForeignKey("proprietarioId");
                 });
 #pragma warning restore 612, 618
         }

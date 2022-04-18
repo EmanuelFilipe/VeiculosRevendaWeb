@@ -58,7 +58,18 @@ namespace VeiculosRevendaWeb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Veiculos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Veiculos_Proprietarios_proprietarioId",
+                        column: x => x.proprietarioId,
+                        principalTable: "Proprietarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Veiculos_proprietarioId",
+                table: "Veiculos",
+                column: "proprietarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -67,10 +78,10 @@ namespace VeiculosRevendaWeb.Migrations
                 name: "Marcas");
 
             migrationBuilder.DropTable(
-                name: "Proprietarios");
+                name: "Veiculos");
 
             migrationBuilder.DropTable(
-                name: "Veiculos");
+                name: "Proprietarios");
         }
     }
 }

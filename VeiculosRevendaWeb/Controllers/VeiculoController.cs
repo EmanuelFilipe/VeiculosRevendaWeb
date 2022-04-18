@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using RabbitMQ.Client;
 using VeiculosRevendaWeb.Data.Interfaces;
 using VeiculosRevendaWeb.Models;
 
@@ -25,7 +28,8 @@ namespace VeiculosRevendaWeb.Controllers
 
         public IActionResult Index()
         {
-            return View(veiculoRepository.GetVeiculos());
+            var model = veiculoRepository.GetVeiculos();
+            return View(model);
         }
 
         public IActionResult Create()
@@ -41,11 +45,19 @@ namespace VeiculosRevendaWeb.Controllers
             if (CustomValidationIsValid(model))
             {
                 veiculoRepository.Add(model);
+                GetProprietario(ref model, Convert.ToInt32(model.proprietarioId));
+                SendVeiculoToQueue(model);
+
                 return RedirectToAction(nameof(Index));
             }
 
             GetListas();
             return View(model);
+        }
+
+        private void GetProprietario(ref Veiculo model, int proprietarioId)
+        {
+            model.Proprietario = proprietarioRepository.GetProprietarioById(proprietarioId);
         }
 
         public IActionResult Detail(int id)
@@ -125,6 +137,42 @@ namespace VeiculosRevendaWeb.Controllers
 
             var proprietarios = proprietarioRepository.GetProprietarios().Where(m => m.CodStatus == 1).ToList();
             ViewBag.ListaProprietariosSelectList = new SelectList(proprietarios, "Id", "Nome");
+        }
+
+
+        private void SendVeiculoToQueue(Veiculo veiculo)
+        {
+            try
+            {
+                var factory = new ConnectionFactory() { HostName = "localhost" };
+                using (var connection = factory.CreateConnection())
+                using (var channel = connection.CreateModel())
+                {
+                    {
+                        channel.QueueDeclare(
+                            queue: "veiculoQueue",
+                            durable: true,
+                            exclusive: false,
+                            autoDelete: false,
+                            arguments: null
+                        );
+
+                        var strinfiedMessage = JsonConvert.SerializeObject(veiculo);
+                        var body = Encoding.UTF8.GetBytes(strinfiedMessage);
+
+                        channel.BasicPublish(
+                            exchange: "",
+                            routingKey: "veiculoQueue",
+                            basicProperties: null,
+                            body: body
+                        );
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
