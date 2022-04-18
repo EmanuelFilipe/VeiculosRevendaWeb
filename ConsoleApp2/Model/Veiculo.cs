@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApp2.Model
+namespace RabbitMQ_Consumer.Model
 {
     public class Veiculo
     {

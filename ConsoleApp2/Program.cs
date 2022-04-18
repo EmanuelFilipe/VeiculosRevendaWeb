@@ -1,4 +1,4 @@
-﻿using ConsoleApp2.Model;
+﻿using RabbitMQ_Consumer.Model;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 
-namespace ConsoleApp2
+namespace RabbitMQ_Consumer
 {
     class Program
     {
