@@ -121,7 +121,7 @@ namespace VeiculosRevendaWeb.Controllers
                 ModelState.AddModelError("Renavam", "Já existe este RENAVAM cadastrado!");
                 ret = false;
             }
-            else if (model.Id > 0 && veiculoRepository.ValidaAlteracaoStatus(Convert.ToInt32(model.CodStatus), model.Id))
+            else if (model.Id > 0 && veiculoRepository.ValidaAlteracaoStatusIncorreto(Convert.ToInt32(model.CodStatus), model.Id))
             {
                 ModelState.AddModelError("CodStatus", "Não é possível alterar o Status para Disponível!");
                 ret = false;

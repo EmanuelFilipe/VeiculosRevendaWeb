@@ -71,6 +71,8 @@ namespace RabbitMQ_Consumer
         {
             if (proprietario != null)
             {
+                Console.WriteLine("Enviado e-mail...");
+
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.From = new MailAddress("filipesilvabr2@gmail.com");
                 mailMessage.To.Add(proprietario.Email);

@@ -11,7 +11,7 @@ namespace VeiculosRevendaWeb.Data.Interfaces
         void Update(Veiculo model);
         void Delete(int? id);
         bool ValidaRenavam(string renavam, int id);
-        bool ValidaAlteracaoStatus(int statusAtual, int id);
+        bool ValidaAlteracaoStatusIncorreto(int statusAtual, int id);
         bool GetMarcaIdInVeiculos(int id);
         bool GetProprietarioIdInVeiculos(int id);
     }

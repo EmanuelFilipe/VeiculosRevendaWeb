@@ -64,7 +64,7 @@ namespace VeiculosRevendaWeb.Data.Repositories
                 return context.Veiculos.Where(v => v.Renavam == renavam).Any();
         }
 
-        public bool ValidaAlteracaoStatus(int statusAtual, int id)
+        public bool ValidaAlteracaoStatusIncorreto(int statusAtual, int id)
         {
             bool ret = false;
             var statusBanco = GetVeiculoById(id).CodStatus;
