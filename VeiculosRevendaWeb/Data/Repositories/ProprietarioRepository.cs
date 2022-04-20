@@ -23,9 +23,9 @@ namespace VeiculosRevendaWeb.Data.Repositories
         public bool ValidaDocumento(string documento, int id)
         {
             if (id > 0)
-                return context.Proprietarios.Where(m => m.Id != id && m.Documento == documento).Any();
+                return context.Proprietarios.Where(m => m.Id != id && m.Documento.ToLower() == documento.ToLower()).Any();
             else
-                return context.Proprietarios.Where(m => m.Documento == documento).Any();
+                return context.Proprietarios.Where(m => m.Documento.ToLower() == documento.ToLower()).Any();
         }
 
         public void Add(Proprietario model)

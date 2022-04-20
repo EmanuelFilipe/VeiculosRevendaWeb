@@ -40,7 +40,7 @@ namespace VeiculosRevendaWeb.Data.Repositories
 
         public bool ValidaNomeMarca(string nome)
         {
-            return context.Marcas.Where(m => m.Nome == nome).Any();
+            return context.Marcas.Where(m => m.Nome.ToLower() == nome.ToLower()).Any();
         }
 
         public void Delete(int? id)
