@@ -1,5 +1,6 @@
 # VeiculosRevendaWeb
-aplicação de cadastro de veículos para revenda.
-projeto criado com Asp.Net Core 2.2 no padrão MVC.
+Projeto de cadastro de veículos para revenda, criado com Asp.Net Core 2.2 no padrão MVC.
 
-Possui comunicação ajax ao pesquisar endereço, font-awesome, máscaras js.
+E possui um exemplo de implementação de mensageria RabbitMQ, enviando para uma fila, e possui um projeto de consumer, para ler a fila e envia um e-mail para o endereço cadastrado.
+
+Possui comunicação ajax ao pesquisar endereço pelo CEP, font-awesome, mascaras js.
