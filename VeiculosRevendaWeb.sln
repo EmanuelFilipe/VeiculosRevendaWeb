@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VeiculosRevendaWeb", "Veicu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ_Consumer", "ConsoleApp2\RabbitMQ_Consumer.csproj", "{4AF7E00D-F527-4F6A-99C7-56244572CC0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeiculosRevenda.Testes", "VeiculosRevenda.Testes\VeiculosRevenda.Testes.csproj", "{CD210272-C95B-44CB-8BB5-DDE81D54B370}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4AF7E00D-F527-4F6A-99C7-56244572CC0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF7E00D-F527-4F6A-99C7-56244572CC0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF7E00D-F527-4F6A-99C7-56244572CC0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD210272-C95B-44CB-8BB5-DDE81D54B370}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD210272-C95B-44CB-8BB5-DDE81D54B370}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD210272-C95B-44CB-8BB5-DDE81D54B370}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD210272-C95B-44CB-8BB5-DDE81D54B370}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

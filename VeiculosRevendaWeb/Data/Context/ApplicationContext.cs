@@ -13,6 +13,13 @@ namespace VeiculosRevendaWeb.Data.Context
         {
         }
 
+        // configuração para usar o projeto de Testes
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+                base.OnConfiguring(optionsBuilder);
+        }
+
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Proprietario> Proprietarios { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
