@@ -84,7 +84,7 @@ namespace RabbitMQ_Consumer
                 {
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new NetworkCredential("filipesilvabr2@gmail.com", "senha");
+                    smtpClient.Credentials = new NetworkCredential("filipesilvabr2@gmail.com", "yiuriyashamiro1");
 
                     try
                     {

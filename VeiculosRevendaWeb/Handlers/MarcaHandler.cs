@@ -22,9 +22,28 @@ namespace VeiculosRevendaWeb.Handlers
             _marcaRepository.Add(marca);
         }
 
+        public void Update(Marca model)
+        {
+            _marcaRepository.Update(model);
+        }
+
+
+        public void Delete(int id)
+        {
+            //var marca = GetMarcaById(id);
+            _marcaRepository.Delete(id);
+        }
+
         public IList<Marca> GetMarcas()
         {
             return _marcaRepository.GetMarcas();
         }
+
+        public Marca GetMarcaById(int id)
+        {
+            var marcas = GetMarcas();
+            return marcas.Where(m => m.Id == id).FirstOrDefault();
+        }
+
     }
 }
