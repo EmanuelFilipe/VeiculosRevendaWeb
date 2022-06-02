@@ -9,6 +9,15 @@ namespace VeiculosRevendaWeb.Models
 {
     public class Proprietario
     {
+        public Proprietario(string nome, string documento, string email, string endereco, int? codStatus)
+        {
+            Nome = nome;
+            Documento = documento;
+            Email = email;
+            Endereco = endereco;
+            CodStatus = codStatus;
+        }
+
         [Key]
         public int Id { get; set; }
 

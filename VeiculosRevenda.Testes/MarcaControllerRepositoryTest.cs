@@ -48,7 +48,7 @@ namespace VeiculosRevenda.Testes
         }
 
         [Fact]
-        public void IncluindoMarcaNoBD()
+        public void IncluindoMarca()
         {
             //arrange
             var model = new Marca("hyundai", 1);
