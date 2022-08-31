@@ -9,14 +9,14 @@ namespace VeiculosRevendaWeb.Models
 {
     public class Marca
     {
+        public Marca()
+        {
+        }
+
         public Marca(string nome, int? codStatus)
         {
             Nome = nome;
             CodStatus = codStatus;
-        }
-
-        public Marca()
-        {
         }
 
         [Key]

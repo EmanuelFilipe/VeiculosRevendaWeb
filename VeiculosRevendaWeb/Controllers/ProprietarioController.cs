@@ -33,6 +33,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (ModelState.IsValid && CustomValidationIsValid(model.Documento))
             {
                 proprietarioRepository.Add(model);
+                TempData["MSG_SUCCESS"] = "Proprietário criado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -57,6 +58,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (ModelState.IsValid)
             {
                 proprietarioRepository.Update(model);
+                TempData["MSG_SUCCESS"] = "Proprietário alterado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 

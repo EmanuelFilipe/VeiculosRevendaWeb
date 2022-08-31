@@ -45,6 +45,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (CustomValidationIsValid(model))
             {
                 veiculoRepository.Add(model);
+                TempData["MSG_SUCCESS"] = "Veículo criado com sucesso!";
                 GetProprietario(ref model, Convert.ToInt32(model.proprietarioId));
                 SendVeiculoToQueue(model);
 
@@ -79,6 +80,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (CustomValidationIsValid(model))
             {
                 veiculoRepository.Update(model);
+                TempData["MSG_SUCCESS"] = "Veículo alterado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 

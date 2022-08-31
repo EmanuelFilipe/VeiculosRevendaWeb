@@ -3,57 +3,16 @@
   "defaultProvider": "cdnjs",
   "libraries": [
     {
-      "library": "font-awesome@6.1.1",
-      "destination": "wwwroot/lib/font-awesome/",
-      "files": [
-        "css/all.css",
-        "css/all.min.css",
-        "css/brands.css",
-        "css/brands.min.css",
-        "css/fontawesome.css",
-        "css/fontawesome.min.css",
-        "css/regular.css",
-        "css/regular.min.css",
-        "css/solid.css",
-        "css/solid.min.css",
-        "css/svg-with-js.css",
-        "css/svg-with-js.min.css",
-        "css/v4-font-face.css",
-        "css/v4-font-face.min.css",
-        "css/v4-shims.css",
-        "css/v4-shims.min.css",
-        "css/v5-font-face.css",
-        "css/v5-font-face.min.css",
-        "js/all.js",
-        "js/all.min.js",
-        "js/brands.js",
-        "js/brands.min.js",
-        "js/conflict-detection.js",
-        "js/conflict-detection.min.js",
-        "js/fontawesome.js",
-        "js/fontawesome.min.js",
-        "js/regular.js",
-        "js/regular.min.js",
-        "js/solid.js",
-        "js/solid.min.js",
-        "js/v4-shims.js",
-        "js/v4-shims.min.js",
-        "sprites/brands.svg",
-        "sprites/regular.svg",
-        "sprites/solid.svg",
-        "webfonts/fa-brands-400.ttf",
-        "webfonts/fa-brands-400.woff2",
-        "webfonts/fa-regular-400.ttf",
-        "webfonts/fa-regular-400.woff2",
-        "webfonts/fa-solid-900.ttf",
-        "webfonts/fa-solid-900.woff2",
-        "webfonts/fa-v4compatibility.ttf",
-        "webfonts/fa-v4compatibility.woff2"
-      ]
+      "library": "toastr.js@2.1.4",
+      "destination": "wwwroot/lib/toastr.js/"
     },
     {
       "library": "jquery.mask@1.14.16",
       "destination": "wwwroot/lib/jquery.mask/"
+    },
+    {
+      "library": "font-awesome@6.2.0",
+      "destination": "wwwroot/lib/font-awesome/"
     }
   ]
 }

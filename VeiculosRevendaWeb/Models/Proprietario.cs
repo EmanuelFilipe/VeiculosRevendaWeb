@@ -9,6 +9,10 @@ namespace VeiculosRevendaWeb.Models
 {
     public class Proprietario
     {
+        public Proprietario()
+        {
+        }
+
         public Proprietario(string nome, string documento, string email, string endereco, int? codStatus)
         {
             Nome = nome;

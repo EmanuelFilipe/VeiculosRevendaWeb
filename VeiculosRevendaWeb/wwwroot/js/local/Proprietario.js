@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+	debugger
 	inicializa();
 
 	$('#cep').mask('99999-999');

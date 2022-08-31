@@ -33,6 +33,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (ModelState.IsValid && CustomValidationIsValid(model.Nome))
             {
                 marcaRepository.Add(model);
+                TempData["MSG_SUCCESS"] = "Marca criada com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -56,6 +57,7 @@ namespace VeiculosRevendaWeb.Controllers
             if (ModelState.IsValid)
             {
                 marcaRepository.Update(model);
+                TempData["MSG_SUCCESS"] = "Marca alterada com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 

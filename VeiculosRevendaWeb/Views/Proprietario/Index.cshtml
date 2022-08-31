@@ -8,10 +8,7 @@
 
 <link href="~/css/local/Proprietario.css" rel="stylesheet" />
 
-@if (TempData["MSG_ERRO"] != null)
-{
-	<p class="alert alert-danger">@TempData["MSG_ERRO"]</p>
-}
+<partial name="_Notificacao" />
 
 <p style="margin-bottom: 60px;"><a class="fa-pull-right btn btn-info fa fa-plus" asp-action="Create"> Novo</a></p>
 

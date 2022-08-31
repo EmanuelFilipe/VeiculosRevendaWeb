@@ -1,0 +1,15 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/toastr.js/toastr.min.js"></script>
+
+@if (TempData["MSG_SUCCESS"] != null)
+{
+	<script type="text/javascript">
+		toastr.success('@TempData["MSG_SUCCESS"]');
+	</script>
+}
+else if (TempData["MSG_ERRO"] != null)
+{
+	<script type="text/javascript">
+		toastr.error('@TempData["MSG_ERRO"]');
+	</script>
+}
