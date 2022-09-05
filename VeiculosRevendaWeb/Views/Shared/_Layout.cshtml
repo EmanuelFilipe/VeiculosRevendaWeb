@@ -47,9 +47,10 @@
     </header>
     <div class="container">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+		<main role="main" class="pb-3">
+			<partial name="_Notificacao" />
+			@RenderBody()
+		</main>
     </div>
 
     <footer class="border-top footer text-muted text-center" style="background-color: white">
