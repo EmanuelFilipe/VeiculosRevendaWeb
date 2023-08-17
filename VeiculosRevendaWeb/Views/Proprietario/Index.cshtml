@@ -8,7 +8,9 @@
 
 <link href="~/css/local/Proprietario.css" rel="stylesheet" />
 
-<p style="margin-bottom: 60px;"><a class="fa-pull-right btn btn-info fa fa-plus" asp-action="Create"> Novo</a></p>
+<p style="margin-bottom: 60px;">
+	<a class="fa-pull-right btn btn-outline-primary fa fa-plus" asp-action="Create"> Novo</a>
+</p>
 
 <table class="table table-hover table-striped">
 	<thead class="thead-dark">
@@ -36,7 +38,7 @@
 					<td class="text-right">
 						<a asp-action="Detail" class="btn btn-info" asp-route-id="@item.Id" title="Visualizar"><span class="fa fa-search"></span></a>
 						<a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id" title="Editar"><span class="fa fa-pencil-alt"></span></a>
-						<a id="deleteItem" class="deleteItem btn btn-danger" data-target="#basicModal" data-toggle="modal" data-path="@Url.Action("Delete", "Proprietario", new { id = item.Id })" title="Deletar"><span class="fa fa-trash"></a>
+						<a id="deleteItem" class="deleteItem btn btn-danger" data-target="#basicModal" data-toggle="modal" data-path="@Url.Action("Delete", "Proprietario", new { id = item.Id })" title="Deletar"><span class="fa fa-trash"></span></a>
 					</td>
 				</tr>
 			}

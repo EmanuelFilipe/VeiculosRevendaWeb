@@ -46,6 +46,7 @@ namespace VeiculosRevendaWeb.Data.Repositories
             proprietario.Email = model.Email;
             proprietario.Endereco = model.Endereco;
             proprietario.CodStatus = model.CodStatus;
+            proprietario.Documento = model.Documento;
 
             context.Proprietarios.Update(proprietario);
             context.SaveChanges();

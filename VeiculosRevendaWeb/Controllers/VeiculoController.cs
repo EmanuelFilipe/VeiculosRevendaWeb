@@ -47,7 +47,7 @@ namespace VeiculosRevendaWeb.Controllers
                 veiculoRepository.Add(model);
                 TempData["MSG_SUCCESS"] = "Veículo criado com sucesso!";
                 GetProprietario(ref model, Convert.ToInt32(model.proprietarioId));
-                SendVeiculoToQueue(model);
+                //SendVeiculoToQueue(model);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -146,7 +146,7 @@ namespace VeiculosRevendaWeb.Controllers
         {
             try
             {
-                var factory = new ConnectionFactory() { HostName = "localhost" };
+                var factory = new ConnectionFactory() { HostName = "http://localhost:15672/" };
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
