@@ -12,23 +12,20 @@ namespace VeiculosRevenda.Testes
 {
     public class MarcaHandlerRepositoryTest
     {
-        //private readonly IVeiculoRepository _marcaRepository;
-
-        //public MarcaRepositoryTest()
-        //{
-        //    var servico = new ServiceCollection();
-        //    servico.AddTransient<IVeiculoRepository, VeiculoRepository>();
-        //    var provedor = servico.BuildServiceProvider();
-        //    _marcaRepository = provedor.GetService<IVeiculoRepository>();
-        //}
-
-        public DbContextOptions options;
+        public DbContextOptions _options;
+        private ApplicationContext _context;
+        private MarcaRepository _marcaRepository;
+        private MarcaHandler _marcaHandler;
 
         public MarcaHandlerRepositoryTest()
         {
-            options = new Microsoft.EntityFrameworkCore.DbContextOptionsBuilder<ApplicationContext>()
+            _options = new DbContextOptionsBuilder<ApplicationContext>()
                                     .UseInMemoryDatabase("DbMarcasContext")
                                     .Options;
+
+            _context = new ApplicationContext(_options);
+            _marcaRepository = new MarcaRepository(_context);
+            _marcaHandler = new MarcaHandler(_marcaRepository);
         }
 
         [Fact]
@@ -36,17 +33,15 @@ namespace VeiculosRevenda.Testes
         {
             //arrange
             var comando = new Marca("Fiat", 1);
-            var context = new ApplicationContext(options);
-            var repo = new MarcaRepository(context);
-            var handler = new MarcaHandler(repo);
 
             //act
-            handler.Add(comando);
+            _marcaHandler.Add(comando);
 
-            var marcas = repo.GetMarcas();
+            var marcas = _marcaRepository.GetMarcas();
 
             //assert
             Assert.NotNull(marcas);
+            Assert.True(marcas.Count == 1);
         }
 
         [Fact]
@@ -55,18 +50,16 @@ namespace VeiculosRevenda.Testes
             //arrange
             var comando1 = new Marca("Fiat", 1);
             var comando2 = new Marca("Ford", 1);
-            var context = new ApplicationContext(options);
-            var repo = new MarcaRepository(context);
-            var handler = new MarcaHandler(repo);
 
             //act
-            handler.Add(comando1);
-            handler.Add(comando2);
+            _marcaHandler.Add(comando1);
+            _marcaHandler.Add(comando2);
 
-            var marca = repo.GetMarcaById(1);
+            var marca = _marcaRepository.GetMarcaById(1);
 
             //assert
             Assert.NotNull(marca);
+            Assert.True(marca.Id == 1);
         }
 
         [Fact]
@@ -74,22 +67,20 @@ namespace VeiculosRevenda.Testes
         {
             //arrange
             var comando = new Marca("Fiat", 1);
-            var context = new ApplicationContext(options);
-            var repo = new MarcaRepository(context);
-            var handler = new MarcaHandler(repo);
 
             //act
-            handler.Add(comando);
+            _marcaHandler.Add(comando);
 
-            var marca = repo.GetMarcas().FirstOrDefault();
+            var marca = _marcaRepository.GetMarcas().FirstOrDefault();
 
             marca.Nome = "Volks";
 
-            handler.Update(marca);
+            _marcaHandler.Update(marca);
 
-            marca = repo.GetMarcas().FirstOrDefault();
+            marca = _marcaRepository.GetMarcas().FirstOrDefault();
 
             //assert
+            Assert.NotNull(marca);
             Assert.Equal("Volks", marca.Nome);
         }
 
@@ -97,24 +88,20 @@ namespace VeiculosRevenda.Testes
         public void TesteExcluindoMarcaPorId()
         {
             //arrange
-            var comando1 = new Marca("Fiat", 1);
-            var comando2 = new Marca("Ford", 1);
-            var context = new ApplicationContext(options);
-            var repo = new MarcaRepository(context);
-            var handler = new MarcaHandler(repo);
+            var comando = new Marca("Fiat", 1);
 
             //act
-            handler.Add(comando1);
-            handler.Add(comando2);
+            _marcaHandler.Add(comando);
 
-            var marca = repo.GetMarcaById(1);
+            var marca = _marcaRepository.GetMarcaById(1);
 
-            handler.Delete(marca.Id);
+            _marcaHandler.Delete(marca.Id);
 
-            marca = repo.GetMarcaById(1);
+            var novaConsultaMarca = _marcaRepository.GetMarcaById(1);
 
             //assert
-            Assert.True(marca.CodStatus == 0); // codstatus == 0 é desativado
+            Assert.NotNull(novaConsultaMarca);
+            Assert.True(novaConsultaMarca.CodStatus == 0); // codstatus == 0 é desativado
         }
 
         // NÃO FUNCIONOU

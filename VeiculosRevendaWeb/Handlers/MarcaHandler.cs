@@ -30,20 +30,19 @@ namespace VeiculosRevendaWeb.Handlers
 
         public void Delete(int id)
         {
-            //var marca = GetMarcaById(id);
             _marcaRepository.Delete(id);
         }
 
-        public IList<Marca> GetMarcas()
-        {
-            return _marcaRepository.GetMarcas();
-        }
+        //public IList<Marca> GetMarcas()
+        //{
+        //    return _marcaRepository.GetMarcas();
+        //}
 
-        public Marca GetMarcaById(int id)
-        {
-            var marcas = GetMarcas();
-            return marcas.Where(m => m.Id == id).FirstOrDefault();
-        }
+        //public Marca GetMarcaById(int id)
+        //{
+        //    var marcas = GetMarcas();
+        //    return marcas.Where(m => m.Id == id).FirstOrDefault();
+        //}
 
     }
 }

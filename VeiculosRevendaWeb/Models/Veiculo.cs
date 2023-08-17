@@ -7,6 +7,25 @@ namespace VeiculosRevendaWeb.Models
 {
     public class Veiculo
     {
+        public Veiculo()
+        {
+
+        }
+
+        public Veiculo(string renavam, string modelo, DateTime? anoFabricacao, DateTime? anoModelo, 
+                       string quilometragem, string valor, int? codStatus, int? proprietarioId, int? marcaId)
+        {
+            Renavam = renavam;
+            Modelo = modelo;
+            AnoFabricacao = anoFabricacao;
+            AnoModelo = anoModelo;
+            Quilometragem = quilometragem;
+            Valor = valor;
+            CodStatus = codStatus;
+            this.proprietarioId = proprietarioId;
+            this.marcaId = marcaId;
+        }
+
         [Key]
         public int Id { get; set; }
 

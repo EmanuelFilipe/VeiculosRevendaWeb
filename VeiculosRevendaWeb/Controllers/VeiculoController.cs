@@ -146,7 +146,7 @@ namespace VeiculosRevendaWeb.Controllers
         {
             try
             {
-                var factory = new ConnectionFactory() { HostName = "http://localhost:15672/" };
+                var factory = new ConnectionFactory() { HostName = "localhost" };
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
