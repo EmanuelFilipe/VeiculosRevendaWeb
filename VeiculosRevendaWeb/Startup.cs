@@ -14,6 +14,7 @@ using VeiculosRevendaWeb.Data;
 using VeiculosRevendaWeb.Data.Context;
 using VeiculosRevendaWeb.Data.Interfaces;
 using VeiculosRevendaWeb.Data.Repositories;
+using VeiculosRevendaWeb.RabbitMQSender;
 
 namespace VeiculosRevendaWeb
 {
@@ -42,6 +43,7 @@ namespace VeiculosRevendaWeb
             services.AddScoped<IMarcaRepository, MarcaRepository>();
             services.AddScoped<IProprietarioRepository, ProprietarioRepository>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+            services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

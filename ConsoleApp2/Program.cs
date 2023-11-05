@@ -20,14 +20,20 @@ namespace RabbitMQ_Consumer
         {
             try
             {
-                var factory = new ConnectionFactory() { HostName = "localhost" };
+                var factory = new ConnectionFactory
+                {
+                    HostName = "localhost",
+                    Password = "guest",
+                    UserName = "guest"
+                };
+
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
 
                     channel.QueueDeclare(
                         queue: "veiculoQueue",
-                        durable: true,
+                        durable: false,
                         exclusive: false,
                         autoDelete: false,
                         arguments: null
@@ -40,7 +46,7 @@ namespace RabbitMQ_Consumer
                         var body = ea.Body;
                         var message = Encoding.UTF8.GetString(body);
                         Console.WriteLine("[x] Received {0}", message);
-                        Console.WriteLine();
+                        Console.WriteLine("\n========================================");
 
                         getProprietario(message);
                     };
@@ -84,7 +90,7 @@ namespace RabbitMQ_Consumer
                 {
                     smtpClient.UseDefaultCredentials = false;
                     smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new NetworkCredential("filipesilvabr2@gmail.com", "senha");
+                    smtpClient.Credentials = new NetworkCredential("filipesilvabr2@gmail.com", "yiuriyashamiro1");
 
                     try
                     {

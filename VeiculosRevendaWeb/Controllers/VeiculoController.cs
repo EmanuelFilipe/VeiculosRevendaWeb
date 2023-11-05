@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
+using VeiculosRevendaWeb.Data.DTO;
 using VeiculosRevendaWeb.Data.Interfaces;
 using VeiculosRevendaWeb.Models;
+using VeiculosRevendaWeb.RabbitMQSender;
 
 namespace VeiculosRevendaWeb.Controllers
 {
@@ -17,13 +19,17 @@ namespace VeiculosRevendaWeb.Controllers
         private readonly IVeiculoRepository veiculoRepository;
         private readonly IMarcaRepository marcaRepository;
         private readonly IProprietarioRepository proprietarioRepository;
+        private IRabbitMQMessageSender _rabbitMQMessageSender;
 
-        public VeiculoController(IVeiculoRepository veiculoRepository, IMarcaRepository marcaRepository,
-                                 IProprietarioRepository proprietarioRepository)
+        public VeiculoController(IVeiculoRepository veiculoRepository, 
+            IMarcaRepository marcaRepository,
+            IProprietarioRepository proprietarioRepository,
+            IRabbitMQMessageSender rabbitMQMessageSender)
         {
             this.veiculoRepository = veiculoRepository;
             this.marcaRepository = marcaRepository;
             this.proprietarioRepository = proprietarioRepository;
+            this._rabbitMQMessageSender = rabbitMQMessageSender;
         }
 
         public IActionResult Index()
@@ -47,7 +53,9 @@ namespace VeiculosRevendaWeb.Controllers
                 veiculoRepository.Add(model);
                 TempData["MSG_SUCCESS"] = "Veículo criado com sucesso!";
                 GetProprietario(ref model, Convert.ToInt32(model.proprietarioId));
-                //SendVeiculoToQueue(model);
+                VeiculoDTO dto = VeiculoMapper(model);
+
+                _rabbitMQMessageSender.SendMessage(dto, "veiculoQueue");
 
                 return RedirectToAction(nameof(Index));
             }
@@ -81,11 +89,34 @@ namespace VeiculosRevendaWeb.Controllers
             {
                 veiculoRepository.Update(model);
                 TempData["MSG_SUCCESS"] = "Veículo alterado com sucesso!";
+                GetProprietario(ref model, Convert.ToInt32(model.proprietarioId));
+                VeiculoDTO dto = VeiculoMapper(model);
+
+                _rabbitMQMessageSender.SendMessage(dto, "veiculoQueue");
+
                 return RedirectToAction(nameof(Index));
             }
 
             GetListas();
             return View(model);
+        }
+
+        private VeiculoDTO VeiculoMapper(Veiculo model)
+        {
+            return new VeiculoDTO
+            {
+                Id = model.Id,
+                Renavam = model.Renavam,
+                Modelo = model.Modelo,
+                AnoFabricacao = model.AnoFabricacao,
+                AnoModelo = model.AnoModelo,
+                Quilometragem = model.Quilometragem,
+                Valor = model.Valor,
+                CodStatus = model.CodStatus,
+                proprietarioId = model.proprietarioId,
+                Proprietario = model.Proprietario,
+                marcaId = model.marcaId
+            };
         }
 
         public IActionResult Delete(int? id)
